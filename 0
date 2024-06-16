@@ -1,0 +1,18 @@
+import os  
+import re
+
+def blacket_extract(text):
+    pattern = r'（(\d+)人）'
+    matches = re.findall(pattern, text)
+    a = int(matches[0])
+    return a 
+
+source_directory = r'C:\Users\Asus\微信群'
+file_names = os.listdir(source_directory)
+
+
+for file_name in file_names:
+    # 获取文件的完整路径
+    source_file_path = os.path.join(source_directory, file_name)
+    if (blacket_extract(file_name) < 40) | (blacket_extract(file_name) > 200):
+        os.remove(source_file_path)
