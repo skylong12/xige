@@ -1,0 +1,59 @@
+#参考代码1
+import re
+
+text = "【微信群】北京换电锂纳斯换易换优惠群（106人）2024年6月10日13时1分22秒.jpg"
+
+pattern = r'（(\d+)人）'
+
+matches = re.findall(pattern, text)
+
+print(matches)
+
+a = int(matches[0])
+
+print(a)
+
+
+
+#参考代码2
+import os
+
+source_directory = r'C:\Users\Asus\Desktop\微信群'
+file_names = os.listdir(source_directory)
+
+print(file_names)
+
+
+
+
+
+#参考代码3
+import os
+import shutil
+
+# 步骤1：读取目录中的全部文件名
+source_directory = 'path/to/source_directory'
+file_names = os.listdir(source_directory)
+
+# 新的目标目录
+destination_directory = 'path/to/destination_directory'
+
+# 确保新目录存在，如果不存在则创建
+if not os.path.exists(destination_directory):
+    os.makedirs(destination_directory)
+
+# 步骤2：根据文件名修改路径并移动文件
+for file_name in file_names:
+    # 获取文件的完整路径
+    source_file_path = os.path.join(source_directory, file_name)
+    
+    # 检查是否为文件（排除目录）
+    if os.path.isfile(source_file_path):
+        # 生成新的文件路径
+        destination_file_path = os.path.join(destination_directory, file_name)
+        
+        # 移动文件到新的路径
+        shutil.move(source_file_path, destination_file_path)
+        print(f'Moved: {source_file_path} -> {destination_file_path}')
+
+print("All files have been moved.")
